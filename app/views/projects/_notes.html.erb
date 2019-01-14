@@ -1,0 +1,33 @@
+<style type="text/css">
+	.div{
+		width: 25%;
+		background-color: lightgreen;
+		margin-left: 0%;	
+	}
+	.mybutton{
+		margin-top: -1px;
+		margin-right: 74%;
+		margin-bottom: 24px;
+	}
+	.file{
+		margin-top: 11px;
+	}
+</style>
+
+<%= form_for @answer1,:url=>update_answer_project_path(@answer1), remote: :true, html: {id: "#{@answer1.id}-answer",role: 'form' ,method: :patch , multipart: true} do |f| %>
+
+		<%= f.hidden_field  "answer-#{@answer1.id}", value: @answer1.id %>
+		<%= f.hidden_field :project, value: @project.id %>
+
+		<div class="row">
+			<%= f.text_area :notes,:cols => 35, :rows => 3, :id=>"notes-#{@answer1.id}"  %>
+			<% if @answer1.file.present? %>
+				<div> 
+					To View File : <a href=<%= "#{@answer1.file_url}"%> target="_blank" style="color:#428bca;">Click here</a>
+				</div>
+			<% end %>	
+			<%= f.file_field :file, :class=>"file" %>
+			<div class='div hidden save-span-<%="#{@answer1.id}"%>' styule="color: red;">Successfully saved.</div>
+	 		<button id='<%= "#{@answer1.id}" %>' class='btn btn-primary btn-xs update-answer mybutton pull-right'>submit</button>
+	 	</div>		
+<% end %>

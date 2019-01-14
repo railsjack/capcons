@@ -1,0 +1,23 @@
+- provide(:title, 'Add project')
+- provide(:activemenu, 'list-projects')
+- if @users.present?
+  %h3= @project.name
+  %table.table.table-bordered.table-striped.table-condensed
+    %thead
+      %th=t('User')
+      %th=t('Email')
+      %th.text-center=t('Action')
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td
+            %a{:href => user_path(user)}= user.first_name || user.last_name || ''
+          %td= user.email
+          %td.text-center
+            / <a href="<haml_loud> edit_user_registration_path(user.id) </haml_loud>" class="btn btn-primary btn-sm">Edit</a>
+            = link_to t('Unassign'),unassign_project_path(@project,{uid: user.id}), :class=>"btn text-orange"
+- else
+  .alert.alert-info.text-center
+    = t('No user has been found')
+    = "."
+= link_to t('Assign to user'), assign_project_project_path(@project), class: "btn text-orange"

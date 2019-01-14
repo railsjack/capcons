@@ -1,0 +1,40 @@
+- provide(:title, 'Add project')
+- provide(:activemenu, 'list-projects')
+.incidents
+  %h4.uppercase
+    = @project.name
+    = t('incidents')
+  - if @incidents.present?
+    %table.table.table-hover
+      %thead
+        %tr
+          %th=t('Date')
+          %th=t('Your name')
+          %th=t('Job title')
+          %th=t('Witnesses')
+          %th=t('Location')
+          %th=t('Circumstances')
+          %th=t('Event description')
+          %th=t('Injuries type')
+          %th.text-center=t('Action')
+      %tbody
+        - @incidents.each do |incident|
+          %tr
+            %td= incident.created_at.strftime("%m/%d/%Y")
+            %td= incident.your_name
+            %td= incident.job_title
+            %td= incident.witnesses
+            %td= incident.location
+            %td= incident.circumstances
+            %td= incident.event_discription
+            %td= incident.injuries_type
+            %td.text-center
+              = link_to t('Show'), project_incident_path(@project, incident), class: "btn btn-xs btn-primary"
+              = link_to t('Download Report'), send_new_incident_incident_path(incident, {format: :pdf}), class: "btn btn-xs btn-primary"
+    %br/
+  - else
+    .alert.alert-info 
+      =t('No incident report found')
+      ="."
+  = link_to t('New Incident'), new_project_incident_path(@project), class: "btn btn-primary btn-lg no-radius"
+

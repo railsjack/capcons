@@ -1,0 +1,33 @@
+- provide(:title, 'Add user')
+- provide(:activemenu, 'add-user')
+.relative.signin-container.user-form{style: "margin-top: 50px; margin-bottom: 50px;"}
+  %p
+    %img{:src => "/images/logo1.png"}/
+  .welcome-message
+    =t('Welcome to Capital Construction Company!')
+  .center-block{style: "margin: 0 auto; width: 600px;"}
+    = form_for(@user, url: adduser_users_path) do |f|
+      = devise_error_messages!
+      %div
+        = f.email_field :email, autofocus: true, class: "form-control", placeholder: t('Email')
+      .relative
+        = f.text_field :username,  class: "form-control", placeholder: t("User name")
+      .relative
+        = f.text_field :first_name,  class: "form-control", placeholder: t("First Name")
+      .relative
+        = f.text_field :last_name,  class: "form-control", placeholder: t('Last Name')
+      .relative
+        = f.text_field :company,  class: "form-control", placeholder: t('Company')
+      .relative
+        = f.text_field :phone,  class: "form-control", placeholder: t('Phone')
+      .relative
+        = f.text_field :address,  class: "form-control", placeholder: t('Address')
+      .relative
+        = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: t('Password')
+      .relative
+        = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: t('Password Confirmation')
+      .relative.col-md-6.col-xs-6.pull-left
+        = f.submit t('Sign up') , class: "btn btn-lg btn-primary btn-block no-radius"
+      .relative.col-md-6.col-xs-6.pull-right
+        %a.btn.btn-login.btn-lg.btn-block.border-white.no-radius.text-white{:href => new_user_session_path}=t('Login')
+      .clearfix

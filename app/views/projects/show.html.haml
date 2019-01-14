@@ -1,0 +1,114 @@
+- provide(:title, 'Add project')
+- provide(:activemenu, 'list-projects')
+
+:javascript
+  $(document).ready(function(){
+  
+      $('.answer_status').click(function(){
+        var $this = $(this);
+        $.ajax({
+              type: 'get',
+              url: '/projects/'+ $('#project_id').val() +'/answers/' + $this.attr('data-id') + '/check_answer',
+              dataType: 'json',
+              data: {
+                id: $this.attr('data-id')
+              },
+              success :function(data){
+                if(data == true)
+                {
+                  bootbox.prompt("Please Enter Reason?", function(result) {                
+              if (result === null) {                                             
+              } else {
+              $.ajax({
+                    type: 'patch',
+                    url: '/projects/'+ $('#project_id').val() +'/answers/' + $this.attr('data-id'),
+                    dataType: 'json',
+                    data: {
+                      status: $this.val(),
+                      note: result
+                    }
+                  });    
+              }
+            });
+                }else{
+            $.ajax({
+                  type: 'patch',
+                  url: '/projects/'+ $('#project_id').val() +'/answers/' + $this.attr('data-id'),
+                  dataType: 'json',
+                  data: {
+                    status: $this.val(),
+                    id: $this.attr('data-id')
+                  }
+                });
+                }
+              }
+            });
+      });
+      $(".update-answer").click(function(e){
+        e.preventDefault();
+        var ansid = $(this).attr('id');
+        var token =  $('meta[name="csrf-token"]').attr('content');
+        var form = $(this).parents('form');
+        console.log(form);
+        var url = form.attr('action');
+        form.ajaxSubmit({
+          url: url,
+          dataType: 'json',
+          type: 'patch',
+          data: {
+                  'authenticity_token' : $('meta[name="csrf-token"]').attr('content')
+              },
+              success: function (data) {
+                $(".save-span-"+ansid).removeClass("hidden");
+                    $("#notes-"+ansid).val('');
+                  }
+        });
+                  
+      });
+    });
+:css
+  th{text-align: center;}
+= hidden_field_tag :project_id, @project.id
+%h4.uppercase=t('Project Detail')
+%table.table.table-bordered.table-striped.table-condensed
+  %thead
+    %th=t('Name')
+    %th=t('Contact Info')
+    %th=t('Address')
+    %th=t('Action')
+  %tbody
+    %tr
+      %td= @project.name
+      %td= @project.contact_info
+      %td= @project.address
+      %td.text-center
+        = link_to t('Edit'), edit_project_path(@project), class: "btn text-orange bg-transparent no-border"
+        = link_to t('View Checklists'), project_reports_path(@project), class: "btn text-orange bg-transparent no-border"
+        = link_to t('Download detail report'), detail_report_project_path(@project, {report: @report, format: :pdf}), class: "btn text-orange bg-transparent no-border"
+        = link_to t('Send incident'), new_project_incident_path(@project), class: "btn text-orange bg-transparent no-border"
+        = link_to t('View incidents'), project_incidents_path(@project), class: "btn text-orange bg-transparent no-border"
+        = link_to @project, data: { confirm: t('Are you sure?') }, method: :delete, class: "btn text-orange bg-transparent no-border" do
+          %i.glyphicon.glyphicon-remove
+
+%fieldset
+  %h2.text-center
+    %strong
+      %h4
+        =t('Detailed View of')
+        =@project.name
+  %br/
+
+
+  - unless @category.nil?
+    - @category.questions.each do |q|
+      .form-group
+        = "#{q.body}"
+        - answer = @answers.find_by(question_id: q.id)
+        .row
+          - GlobalConstants::Answers::STATUSES.each do |st|
+            .col-sm-3
+              - unless answer.nil?
+                = radio_button_tag "status#{answer.id}", st[1], answer_radio_status(answer.status, st[1]), class: "answer_status", data: { id: answer.id }
+                = label "status#{answer.id}_#{st[1]}", st[0]
+      /%div{:style => "margin-right: 0px;margin-left: 14px;"}
+      /  = render partial: "notes", :locals => {:@answer1 => answer, :@project=>@project}

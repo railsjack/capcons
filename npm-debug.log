@@ -1,0 +1,87 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'sax@0.1.1' ]
+2 info using npm@1.4.10
+3 info using node@v0.11.14-pre
+4 verbose cache add [ 'sax@0.1.1', null ]
+5 verbose cache add name=undefined spec="sax@0.1.1" args=["sax@0.1.1",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'sax@0.1.1',
+6 verbose parsed url   path: 'sax@0.1.1',
+6 verbose parsed url   href: 'sax@0.1.1' }
+7 verbose cache add name="sax" spec="0.1.1" args=["sax","0.1.1"]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: '0.1.1',
+8 verbose parsed url   path: '0.1.1',
+8 verbose parsed url   href: '0.1.1' }
+9 verbose addNamed [ 'sax', '0.1.1' ]
+10 verbose addNamed [ '0.1.1', '0.1.1' ]
+11 silly lockFile 126e61e1-sax-0-1-1 sax@0.1.1
+12 verbose lock sax@0.1.1 /home/devsinc/.npm/126e61e1-sax-0-1-1.lock
+13 verbose url raw sax
+14 verbose url resolving [ 'https://registry.npmjs.org/', './sax' ]
+15 verbose url resolved https://registry.npmjs.org/sax
+16 info trying registry request attempt 1 at 13:55:39
+17 verbose etag "9OSHR6OSS62QRE3HF9HIUIKDJ"
+18 http GET https://registry.npmjs.org/sax
+19 http 304 https://registry.npmjs.org/sax
+20 silly registry.get cb [ 304,
+20 silly registry.get   { date: 'Mon, 23 Jun 2014 08:55:41 GMT',
+20 silly registry.get     server: 'Apache',
+20 silly registry.get     via: '1.1 varnish',
+20 silly registry.get     'last-modified': 'Mon, 23 Jun 2014 08:55:29 GMT',
+20 silly registry.get     'cache-control': 'max-age=30',
+20 silly registry.get     etag: '"9OSHR6OSS62QRE3HF9HIUIKDJ"',
+20 silly registry.get     'x-served-by': 'cache-ams4132-AMS',
+20 silly registry.get     'x-cache': 'HIT',
+20 silly registry.get     'x-cache-hits': '2',
+20 silly registry.get     'x-timer': 'S1403513741.145039,VS0,VE0',
+20 silly registry.get     vary: 'Accept',
+20 silly registry.get     'content-length': '0',
+20 silly registry.get     connection: 'close' } ]
+21 verbose etag sax from cache
+22 silly lockFile 714d40c2-stry-npmjs-org-sax-sax-0-1-1-tgz https://registry.npmjs.org/sax/-/sax-0.1.1.tgz
+23 verbose lock https://registry.npmjs.org/sax/-/sax-0.1.1.tgz /home/devsinc/.npm/714d40c2-stry-npmjs-org-sax-sax-0-1-1-tgz.lock
+24 verbose addRemoteTarball [ 'https://registry.npmjs.org/sax/-/sax-0.1.1.tgz',
+24 verbose addRemoteTarball   '8fbfda000c2d03f6ab946d6acbbfca13ff7f32bf' ]
+25 silly lockFile 714d40c2-stry-npmjs-org-sax-sax-0-1-1-tgz https://registry.npmjs.org/sax/-/sax-0.1.1.tgz
+26 silly lockFile 714d40c2-stry-npmjs-org-sax-sax-0-1-1-tgz https://registry.npmjs.org/sax/-/sax-0.1.1.tgz
+27 silly lockFile 126e61e1-sax-0-1-1 sax@0.1.1
+28 silly lockFile 126e61e1-sax-0-1-1 sax@0.1.1
+29 error Error: EACCES, mkdir '/home/devsinc/tmp/npm-3692-BwMilpcH'
+29 error     at Error (native)
+29 error  { [Error: EACCES, mkdir '/home/devsinc/tmp/npm-3692-BwMilpcH']
+29 error   stack: 'Error: EACCES, mkdir \'/home/devsinc/tmp/npm-3692-BwMilpcH\'\n    at Error (native)',
+29 error   errno: -13,
+29 error   code: 'EACCES',
+29 error   path: '/home/devsinc/tmp/npm-3692-BwMilpcH' }
+30 error Please try running this command again as root/Administrator.
+31 error System Linux 3.8.0-35-generic
+32 error command "/usr/local/bin/node" "/usr/local/bin/npm" "install" "sax@0.1.1"
+33 error cwd /home/devsinc/projects/test_app
+34 error node -v v0.11.14-pre
+35 error npm -v 1.4.10
+36 error path /home/devsinc/tmp/npm-3692-BwMilpcH
+37 error code EACCES
+38 error errno -13
+39 error stack Error: EACCES, mkdir '/home/devsinc/tmp/npm-3692-BwMilpcH'
+39 error stack     at Error (native)
+40 verbose exit [ -13, true ]

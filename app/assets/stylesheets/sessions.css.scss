@@ -1,0 +1,33 @@
+// Place all the styles related to the sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.signin-container{
+	.welcome-message{
+		font-family: 'open_sanslight', sans-serif;
+		font-size: 20pt;
+		font-weight: normal;
+		color: #ccc;
+		margin-bottom: 50px;
+	}
+
+	.form-signin{
+		max-width: 400px;
+
+		.forgot-password{
+			height: 40px;
+			line-height: 40px;
+		}
+	}
+
+	.signup-message{
+		font-family: 'open_sanslight', sans-serif;
+		font-size: 16pt;
+		font-weight: normal;
+		color: #ccc;
+		margin: 20px 0;
+	}
+
+
+
+}

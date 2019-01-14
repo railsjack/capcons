@@ -1,0 +1,300 @@
+- provide(:title, 'Stats')
+- provide(:activemenu, 'stats')
+- @noheader = true
+
+:javascript
+	var users = #{@users.to_json}
+	var projects = #{@all_projects.to_json}
+.stats
+	.stat1.each-stat
+		.header
+			=image_tag('/images/header-icon-1.png')
+			1. HOW MANY 
+			%strong CHECKLISTS
+			WERE
+			%strong COMPLETED
+			THE PAST 30 DAYS, 60 DAYS, 90 DAYS AND YTD?
+			%i.glyphicon.glyphicon-chevron-down.pull-right.collapse-button
+		.container.body
+			.row
+				.col-md-11.infos
+					.info.pull-left
+						.picture.pull-left=image_tag('/images/man.png')
+						.pull-left.dropdown.dropdown-caption
+							%span.text Eddie Murphy
+							%ul.dropdown-list.users
+								- @users.each do |user|
+									%li{id: user[:id]}=user[:name]
+					.info.pull-left
+						.picture.pull-left=image_tag('/images/file.png')
+						.pull-left.dropdown.dropdown-caption
+							%span.text Build the Bridges
+							%ul.dropdown-list.projects
+								- @all_projects.each do |project|
+									%li{id: project[:id]}=project[:name]
+			.row.row2.text-center
+				%span.pie-chart{"data-duration"=>"30", "data-value"=>"0", "data-line-width" => "10", "data-percent" => "0", "data-storke-color" => "#e76128"}
+				%span.pie-chart{"data-duration"=>"60", "data-value"=>"0", "data-line-width" => "10", "data-percent" => "0", "data-storke-color" => "#e76128"}
+				%span.pie-chart{"data-duration"=>"90", "data-value"=>"0", "data-line-width" => "10", "data-percent" => "0", "data-storke-color" => "#e76128"}
+				%span.pie-chart{"data-duration"=>"YTD", "data-value"=>"0", "data-line-width" => "10", "data-percent" => "0", "data-storke-color" => "gradient"}
+
+	.stat2.each-stat
+		.header
+			=image_tag('/images/header-icon-2.png')
+			2. HOW MANY
+			%strong OPEN ISSUES
+			ARE OVER 7, 30 AND GREATER THAN 30 DAYS OUTSTANDING ?
+			%i.glyphicon.glyphicon-chevron-down.pull-right.collapse-button
+		.container.body
+			.row.row2
+				.col-md-11.infos
+					.info.pull-left
+						.picture.pull-left=image_tag('/images/man.png')
+						.pull-left.dropdown.dropdown-caption
+							%span.text Eddie Murphy
+							%ul.dropdown-list.users
+								- @users.each do |user|
+									%li{id: user[:id]}=user[:name]
+					.info.pull-left
+						.picture.pull-left=image_tag('/images/file.png')
+						.pull-left.dropdown.dropdown-caption
+							%span.text Build the Bridges
+							%ul.dropdown-list.projects
+								- @all_projects.each do |project|
+									%li{id: project[:id]}=project[:name]
+			.row.row2.exclamations.text-center
+				.exclamation1
+					.caption1
+						.span OVER
+						.span 7 DAYS
+					.value 0
+					.caption2 ISSUES
+				.exclamation2
+					.caption1
+						.span OVER
+						.span 30 DAYS
+					.value 0
+					.caption2 ISSUES
+				.exclamation3
+					.caption1
+						.span OVER
+						.span 60 DAYS
+					.value 0
+					.caption2 ISSUES
+	.stat3.each-stat
+		.header
+			=image_tag('/images/header-icon-3.png')
+			3. HOW MANY SAFETY 
+			%strong CATEGORIES
+			WERE
+			%strong REVIEWED
+			OVER THE PAST 30 DAYS, 60 DAYS, 90 DAYS AND YTD?
+			%i.glyphicon.glyphicon-chevron-down.pull-right.collapse-button
+		.container.body
+			.row
+				.col-md-11.infos
+					.info.pull-left
+						.picture.pull-left=image_tag('/images/man.png')
+						.pull-left.dropdown.dropdown-caption
+							%span.text Eddie Murphy
+							%ul.dropdown-list.users
+								- @users.each do |user|
+									%li{id: user[:id]}=user[:name]
+					.info.pull-left
+						.picture.pull-left=image_tag('/images/file.png')
+						.pull-left.dropdown.dropdown-caption
+							%span.text Build the Bridges
+							%ul.dropdown-list.projects
+								- @all_projects.each do |project|
+									%li{id: project[:id]}=project[:name]
+			.row.row2.text-center
+				%span.pie-chart{"data-duration"=>"30", "data-value"=>"0", "data-line-width" => "10", "data-percent" => "0", "data-storke-color" => "#e76128"}
+				%span.pie-chart{"data-duration"=>"60", "data-value"=>"0", "data-line-width" => "10", "data-percent" => "0", "data-storke-color" => "#e76128"}
+				%span.pie-chart{"data-duration"=>"90", "data-value"=>"0", "data-line-width" => "10", "data-percent" => "0", "data-storke-color" => "#e76128"}
+				%span.pie-chart{"data-duration"=>"YTD", "data-value"=>"0", "data-line-width" => "10", "data-percent" => "0", "data-storke-color" => "gradient"}
+
+	.stat4.each-stat
+		.header
+			=image_tag('/images/header-icon-4.png')
+			4.
+			%strong SORT
+			AND
+			%strong RANK
+			%i.glyphicon.glyphicon-chevron-down.pull-right.collapse-button
+
+		.container.body
+			.row.row2.toolbar
+
+				.col.col-md-6.col-sm-11.pull-left
+					.info.pull-left
+						.picture.pull-left=image_tag('/images/file.png')
+						.pull-left.dropdown.dropdown-caption
+							%span.text Build the Bridges
+							%ul.dropdown-list.projects
+								- @all_projects.each do |project|
+									%li{id: project[:id]}=project[:name]
+
+				.col.col-md-6.col-sm-11.pull-left
+					.daterange{"start-date" => @from_s, "end-date" => @to_s, "data-date-format" => "dd/mm/yyyy", id: 'stat4-container'}
+						=image_tag('/images/calendar.png')
+						From:
+						%span.from-date
+							=link_to '#' do
+								%span#startDate.from-date.small{:href => "#"}
+						To:
+						%span.to-date
+							=link_to '#' do
+								%span#endDate.small{:href => "#"}
+
+
+
+				.col.col-md-6.col-md-offset-0.col-sm-11.col-sm-offset-1.hidden
+					=image_tag('/images/star-icon-1.png')
+					RANK EMPLOYEES PER:
+					%span.dropdown-caption
+						%span.text AVERAGE CHECKLISTS PER MONTH
+						%ul.dropdown-list#sort_by
+							%li{id: 'avg'} AVERAGE CHECKLISTS PER MONTH
+							%li{id: 'max'} MAX CHECKLISTS PER MONTH
+							%li{id: 'min'} MIN CHECKLISTS PER MONTH
+
+			.row.data-table
+				.col-md-offset-1.col-md-10
+					%table#data-table.table.table-striped{"data-sort-name-1" => "employee_name", "data-sort-order" => "asc", "data-toggle" => "table"}
+						%thead
+							%tr
+								%th{"data-field" => "employee_name", "data-sortable" => "true", "data-sorter"=>"stringSorter"} Employee
+								%th{"data-field" => "project_name", "data-sortable" => "true", "data-sorter"=>"stringSorter"} Project
+								%th{"data-field" => "number_of_days", "data-sortable" => "true", "data-sorter"=>"numberSorter"} # of days
+								%th{"data-field" => "checklist_count", "data-sortable" => "true", "data-sorter"=>"numberSorter"} Checklists completed
+								%th{"data-field" => "category_count", "data-sortable" => "true", "data-sorter"=>"numberSorter"} # of categories completed
+								%th{"data-field" => "issue_count", "data-sortable" => "true", "data-sorter"=>"numberSorter"} # of open issues
+
+
+
+	.stat5.each-stat
+		.header
+			=image_tag('/images/header-icon-5.png')
+			5. NUMBER OF 
+			%strong INCIDENT REPORTS 
+			PER PERSON AND BY PROJECT.
+			%i.glyphicon.glyphicon-chevron-down.pull-right.collapse-button
+		.container.body{style: 'margin-top: 20px;'}
+			.row.row2
+				.col-md-6.incident-block.left.stat5_1
+					.row
+						.col-md-6.employee-list
+							.pull-left=image_tag('/images/icon-man.png')
+							.pull-left.dropdown.dropdown-caption
+								%span.text Eddie Murphy
+								%ul.dropdown-list.users
+									- @users.each do |user|
+										%li{id: user[:id]}=user[:name]
+						.col-md-6.period
+							.pull-left=image_tag('/images/calendar.png')
+							.pull-left.datepicker#period1.daterange{"start-date" => @from_s, "end-date" => @to_s, 
+										"data-date-format" => "dd/mm/yyyy"}
+								="#{@from_s} ~ #{@to_s}"
+							.clear
+					.row
+						.col-md-10.col-md-offset-1
+							.incident-bg
+								%span.value
+
+				.col-md-6.incident-block.stat5_2
+					.row
+						.col-md-6.employee-list
+							.pull-left=image_tag('/images/icon-file.png')
+							.pull-left.dropdown.dropdown-caption
+								%span.text Eddie Murphy
+								%ul.dropdown-list.projects
+									- @all_projects.each do |project|
+										%li{id: project[:id]}=project[:name]
+						.col-md-6.period
+							.pull-left=image_tag('/images/calendar.png')
+							.pull-left.datepicker#period2.daterange{"start-date" => @from_s, "end-date" => @to_s, 
+										"data-date-format" => "dd/mm/yyyy"}
+								="#{@from_s} ~ #{@to_s}"
+							.clear
+					.row
+						.col-md-10.col-md-offset-1
+							.incident-bg
+								%span.value 
+		
+	.stat6.each-stat
+		.header
+			=image_tag('/images/header-icon-6.png')
+			6. NUMBER OF DAYS 
+			%strong FROM AN INCIDENT OCCURANCE 
+			TO WHEN AN INCIDENT REPORT IS FILLED OUT.
+			%i.glyphicon.glyphicon-chevron-down.pull-right.collapse-button
+		.container.body{style: 'margin-top: 20px;'}
+			.row.row2
+				.col-md-3.col-md-offset-1
+					%input.search{:placeholder => "FIND ISSUE", :type => "search"}/
+					%span.search-icon
+					#wrapper.search-wrapper
+						#scroller
+							%ul.tree
+
+				.col-md-7.col-md-offset-1
+					.issue-info
+						=image_tag('/images/exclamation-4.png')
+						%span.issue-name
+						.close-icon=image_tag('/images/icon-close.png')
+					.issue-detail
+						.day-count
+						.start-date
+						.completed-date
+						.day-count-title DAYS
+
+
+
+	.stat7.each-stat
+		.header
+			=image_tag('/images/header-icon-7.png')
+			7. 
+			%strong AVERAGE NUMBER 
+			OF CHECKLISTS COMPLETED PER DAY.
+			%i.glyphicon.glyphicon-chevron-down.pull-right.collapse-button
+		.container.body
+			.row.row2
+				.col-md-7.col-md-offset-0.col-sm-11.col-sm-offset-1
+					.infos
+						.info.pull-left
+							.picture.pull-left=image_tag('/images/man.png')
+							.pull-left.dropdown.dropdown-caption
+								%span.text Eddie Murphy
+								%ul.dropdown-list.users
+									- @users.each do |user|
+										%li{id: user[:id]}=user[:name]
+						.info.pull-left
+							.picture.pull-left=image_tag('/images/file.png')
+							.pull-left.dropdown.dropdown-caption
+								%span.text Build the Bridges
+								%ul.dropdown-list.projects
+									- @all_projects.each do |project|
+										%li{id: project[:id]}=project[:name]
+				.col-md-5.col-md-offset-0.col-sm-11.col-sm-offset-1.toolbar
+					.daterange{"start-date" => @from_s, "end-date" => @to_s, "data-date-format" => "dd/mm/yyyy", id: 'stat7-container'}
+						=image_tag('/images/calendar.png')
+						From:
+						%span.from-date
+							=link_to '#' do
+								%span#startDate.from-date.small{:href => "#"}
+						To:
+						%span.to-date
+							=link_to '#' do
+								%span#endDate.small{:href => "#"}
+				.clear
+				.col-md-10.col-md-offset-1.col-sm-11.col-sm-offset-1.chart_container.no-padding
+					#chart_container
+					%div.last_date
+
+				%p &nbsp;
+				%p &nbsp;
+				%p &nbsp;
+				%p &nbsp;
+				%p &nbsp;
+				%p &nbsp;
+				%p &nbsp;

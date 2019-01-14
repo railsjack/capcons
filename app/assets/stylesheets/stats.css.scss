@@ -1,0 +1,663 @@
+// Place all the styles related to the stats controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.each-stat{
+	background-color: white;
+	position: relative;
+	margin-bottom: 50px;
+	&.collapsed{
+		height: 50px;
+		margin-bottom: 0px;
+		.header{
+			.glyphicon-chevron-down:before {
+				content: "\e113";
+			}
+		}
+		.container{
+			display: none;
+		}
+	}
+}
+.header{
+	position: relative;
+	& > .glyphicon-chevron-down{
+    margin-top: -8px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    cursor: pointer;
+  }
+} 
+
+table { border-collapse: separate; }
+.daterangepicker{
+	td{
+		border: solid 1px white;
+	}
+	td.available.active.start-date.day {
+		color: #000;
+		background-color: white;
+		border-radius: 100%;
+		border: solid 1px #2ecb71;
+	}
+
+	td.available.active.end-date.day {
+		color: #000;
+		background-color: white;
+		border-radius: 100%;
+		border: solid 1px #e04300;
+	}
+}
+
+.stats{
+	.dropdown{
+		min-width: 210px;
+        width: auto;
+		height: 30px;
+		line-height: 30px;
+		margin-top: 10px;
+		background: url(/images/dropdown.png) no-repeat right 15px center !important;
+		color: #666 !important;
+		border-bottom: solid 1px #ccc;
+		text-indent: 10px;
+	}
+	.dropdown-caption{
+		position: relative;
+		border-bottom: solid 1px #aaa;
+		padding-left: 5px;
+		padding-right: 30px;
+		display: inline-block;
+		
+		background: url(/images/dropdown.png) right 2px center no-repeat;
+		ul.dropdown-list{
+			color: #666;
+			position: absolute;
+			z-index: 1;
+			left: 0;
+			margin: 0;
+			margin-top: 2px;
+			padding: 0;
+			border: solid 1px #eee;
+			width: 96%;
+			max-height: 200px;
+			overflow-y: auto;
+			box-shadow: 5px 5px 5px rgba(200,200,200,.5);
+			background-color: white;
+			display: none;
+
+			overflow-y: auto;
+			overflow-x: hidden;
+
+			li{
+				list-style: none;
+				&.selected{display: block;}
+				padding: 3px;
+				text-indent: 5px;
+				&:hover{
+					background-color: #dcdcdc;
+					color: black;
+				}	
+			}
+		}
+	}
+
+
+
+	.stat1, .stat3{
+		& > .header{
+			background: url(/images/bgcut-1.png) repeat-x !important;
+			margin: 0;
+			padding: 15px;
+			height: 52px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			img{
+				margin-top: -5px;
+			}
+		}
+		.container.body{
+			.row{
+				amargin-top: 30px;
+				&.row2{ amargin-bottom: 30px; }
+				.infos{
+					margin-left: 10px;
+					.info{margin-left: 30px;}
+				}
+			}
+		}
+
+
+		.pie-chart{
+			position: relative;
+			display: inline-block;
+			width: 110px;
+			height: 110px;
+			margin: 50px 50px;
+			text-align: center;
+			margin-top: 0px;
+			canvas {
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		}
+
+		.percent1{
+			position: absolute;
+			left: 32px;
+			top: 25px;
+			width: 62px;
+			.caption{
+				font-size: 8pt;
+			}
+			.value{
+				color: #ccc;
+				font-size: 25pt;
+			}
+		}
+
+		.percent{
+			display: inline-block;
+			line-height: 110px;
+			z-index: 2;
+			&:aftera{
+				content: '%';
+				margin-left: 0.1em;
+				font-size: .8em;
+			}
+		}
+
+		.down-info{
+			position: absolute;
+			bottom: -50px;
+			width: 100%;
+			.caption{
+				font-size: 8pt;
+			}
+			.value{
+				font-size: 18pt;
+				color: #e76128;
+			}
+		}
+
+		.percent-top, .percent-down{
+			display: block;
+			line-height: 110px;
+			z-index: 2;
+		}
+
+	}
+
+
+	.stat2{
+		& > .header{
+			background: url(/images/bgcut-1.png) repeat-x !important;
+			margin: 0;
+			padding: 15px;
+			height: 52px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			img{
+				margin-top: -5px;
+			}
+		}
+		.container.body{
+			.row{
+				margin-top: 30px;
+				margin-bottom: 30px;
+				&.row2{ margin-top: 30px; margin-bottom: 30px; }
+
+				.infos{
+					margin-left: 10px;
+					.info{margin-left: 30px;}
+				}
+
+				&.exclamations{
+					.exclamation1, .exclamation2, .exclamation3{ 
+						position: relative;
+						display: inline-block !important; 
+						width: 120px;
+						height: 230px;
+						margin: 0 80px;
+						margin-bottom: 0px;
+						background-repeat: no-repeat !important;
+						background-position: center top 50px !important;
+
+						.caption1, .caption2, .value{
+							position: absolute;
+							width: 100%;
+							text-align: center;
+							font-size: 10pt;
+						}
+						.caption1, .caption2{
+							color: #aaa !important;
+						}
+						.value{ bottom: 20px; font-size: 20pt; }
+						.caption2{ bottom: 0; }
+					}
+					.exclamation1{ background: url(/images/exclamation-1.png); color: #aaa !important;}
+					.exclamation2{ background: url(/images/exclamation-2.png); color: #f29b12 !important;}
+					.exclamation3{ background: url(/images/exclamation-3.png); color: #ee6429 !important;}
+				}
+			}
+		}
+
+	}
+
+
+	.stat4{
+		& > .header{
+			background: url(/images/bgcut-1.png) repeat-x !important;
+			margin: 0;
+			padding: 15px;
+			height: 52px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			img{
+				margin-top: -5px;
+			}
+		}
+		.container.body{
+			.hiddenRow {
+			  padding: 0 !important;
+			}
+			.next-row{
+				td{
+					padding: 0;
+					padding-left: 5px;
+					background: none !important;
+				}
+			}
+			.accordian-body{
+				&.collapse{
+					display: none;
+				}
+			}
+			.row{
+				margin-top: 30px;
+				margin-bottom: 30px;
+				&.row2{ margin-top: 30px; margin-bottom: 30px; }
+				&.toolbar{
+					font-size: 10pt;
+					.col{
+						padding-left: 40px;
+						height: 47px;
+						line-height: 47px;
+					}
+					img{
+						margin-top: -3px;
+					}
+					.dropdown-caption{
+						width: 280px;
+					}
+					.daterange{
+						width: 330px;
+						background: url(/images/dropdown.png) right 2px center no-repeat;
+						font-size: 10.0pt;
+						.from-date, .to-date{
+							width: 110px;
+							display: inline-block;
+						}
+						.from-date{ color: #2fc66e; text-align: left;}
+						.to-date{ color: #e04300; 
+							a{text-decoration: none;}
+						}
+					}
+
+				}
+
+				&.data-table{
+					.fixed-table-container{
+						border: none;
+					}
+					.table{
+						border: none;
+						thead{
+							border-bottom: solid 1px #ccc;
+							background-color: transparent;
+						}
+						.dropup .caret, .navbar-fixed-bottom .dropdown .caret{
+							border-bottom: 4px solid #A8A8A8;
+							border-top: none;
+						}
+
+						.caret{
+							border-top: 4px solid #A8A8A8;
+							border-bottom: none;
+						}
+
+						font-size: 10pt;
+						th{
+							color: #999;
+							border: none;
+						}
+						tr{
+							td{
+								background-color: transparent !important;
+								border: none;
+								border-bottom: solid 1px #eee;
+								/*height: 30px;*/
+								line-height: 30px;
+								&.data{
+									color: #e04300;
+								}
+							}
+						}
+
+						& > tbody > tr{
+							& > td{
+								&:nth-child(1){
+									text-indent: 10px;
+									background: url(/images/table-icon.png) left center no-repeat;
+								}
+							}
+						}
+
+						& > tbody > tr.expanded{
+							& > td{
+								&:nth-child(1){
+									background: url(/images/table-icon-selected.png) left center no-repeat;
+								}
+							}
+						}
+
+					}
+				}
+
+			}
+
+		}
+
+	}
+
+
+
+	.stat5{
+		& > .header{
+			background: url(/images/bgcut-1.png) repeat-x !important;
+			margin: 0;
+			padding: 15px;
+			height: 52px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			img{
+				margin-top: -5px;
+			}
+		}
+		.container.body{
+
+			.row{
+				.incident-block{
+					height: 300px;
+					&.left{
+						border-right: solid 1px #ddd;
+					}
+					.employee-list{
+						.dropdown-caption{
+							width: 190px;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+							padding-right: 0;
+							margin-top: -5px;
+						}
+					}
+					.period{
+						.datepicker{
+							width: 220px;
+							padding-left: 10px;
+							background: url(/images/dropdown.png) right 2px center no-repeat;
+							border-bottom: solid 1px #aaa;
+						}
+					}
+					.incident-bg{
+						background: url(/images/incident-bg.png) left 150px center no-repeat;
+						width: 100%;
+						height: 220px;
+						position: relative;
+						.value{
+							position: absolute;
+							left: 168px;
+							bottom: 45px;
+							text-align: center;
+							font-size: 25pt;
+							color: #e04300;
+							width: 70px;						}
+					}
+				}
+			}
+		}
+		
+	}
+
+
+
+	.stat6{
+		& > .header{
+			background: url(/images/bgcut-1.png) repeat-x !important;
+			margin: 0;
+			padding: 15px;
+			height: 52px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			img{
+				margin-top: -5px;
+			}
+		}
+
+		ul.tree{
+			li{
+				white-space: nowrap;
+				&.project{
+					font-weight: bold;
+				}
+				&.incident{
+					font-weight: normal;
+					&.selected{
+						color: #ED6429;
+					}
+				}
+			}
+		}
+
+		.container.body{
+			.row{
+				.search{
+					margin-bottom: 20px;
+					width: 250px;
+					border: solid 1px #ddd;
+				}
+				.search-wrapper{
+					width: 400px;
+					height: 200px;
+					position: relative;
+					z-index: 100;	
+
+					#scroller{
+						height: 100%;
+						overflow: auto;
+					}
+				}
+
+				.issue-info{
+					position: relative;
+					margin: 0 auto;
+					margin-left: 120px;
+					width: 360px;
+					border-bottom: solid 1px #ccc;
+					abackground: url(/images/icon-close.png) right 2px center no-repeat;
+					.issue-name{
+						text-indent: 20px;
+						height: 20px;
+						line-height: 21px;
+						margin-left: -12px;
+						white-space: nowrap;
+						overflow-x: hidden;
+						text-overflow: ellipsis;
+						display: inline-block;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						width: 350px;
+					}
+
+					.close-icon{
+						position: absolute;
+						top: 2px;
+						right: 0px;
+						cursor: pointer;
+					}
+				}
+				.issue-detail{
+					background: url(/images/issue-detail-bg.png) no-repeat left 155px center;
+					height: 220px;
+					.day-count{
+						color: #e04300;
+						position: absolute;
+						text-align: center;
+						/* width: 100%; */
+						top: 60px;
+						left: 240px;
+						width: 100px;
+						font-size: 40pt;
+					}
+
+					.day-count-title{
+						position: absolute;
+						left: 274px;
+						bottom: 70px;
+						font-size: 10pt;
+						color: gray;
+					}
+					.start-date {
+						position: absolute;
+						bottom: 50px;
+						left: 148px;
+					}
+					.completed-date{
+						position: absolute;
+						bottom: 50px;
+						left: 360px;
+
+					}
+				}
+			}
+		}
+		
+	}
+
+
+
+	.stat7{
+		.chart-label{
+			&.max, &.mid, &.min{
+				font-size: 12pt;
+			}
+			&.max{
+				color: #2ECB71;
+			}
+			&.mid{
+				color: #ED6429;
+			}
+			&.min{
+				color: #3497DA;
+			}
+		}
+
+		& > .header{
+			background: url(/images/bgcut-1.png) repeat-x !important;
+			margin: 0;
+			padding: 15px;
+			height: 52px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			img{
+				margin-top: -5px;
+			}
+		}
+
+		.container.body{
+
+
+			.row{
+				margin-top: 30px;
+				&.row2{ margin-bottom: 30px; }
+				.infos{
+					margin-left: 10px;
+					.info{margin-left: 30px; }
+				}
+
+
+				.toolbar, .chaart_container{
+					margin-top: 16px;
+					font-size: 10pt;
+					
+					.col{
+						padding-left: 40px;
+					}
+					img{
+						margin-top: -3px;
+					}
+					.dropdown-caption{
+						width: 200px;
+					}
+					.daterange{
+						width: 330px;
+						background: url(/images/dropdown.png) right 2px center no-repeat;
+						font-size: 10.0pt;
+						.from-date, .to-date{
+							width: 110px;
+							display: inline-block;
+						}
+						.from-date{ color: #2fc66e; text-align: left;}
+						.to-date{ color: #e04300; 
+							a{text-decoration: none;}
+						}
+					}
+				}
+
+				.chart_container{
+					width: 90%; 
+					overflow: auto;
+					margin-left: 30px;
+					#chart_container{
+						min-width: 100%; height: 400px; margin: 10px;
+					}
+
+					.last_date{
+						width: 70px;
+						height: 70px;
+						position: absolute;
+						bottom: 13px;
+						left: 0px;
+						border: solid 1px #CDCDCD;
+						border-radius: 100%;
+						background-color: white;
+						text-align: center;
+						line-height: 70px;
+						font-size: 20px;
+						z-index: 10;
+						color: green;
+						box-shadow: 3px 3px 5px 0px #aaa;
+					}
+
+				}
+
+
+			}
+
+
+
+		}
+		
+
+	}
+
+
+
+}

@@ -1,0 +1,21 @@
+- provide(:title, 'Admins')
+- provide(:activemenu, 'list-admins')
+
+.container
+  %table.table
+    %thead
+      %tr
+        %th
+          User Name
+        %th
+          Email
+        %th
+          Action
+
+    %tbody
+      - @admins.each do |admin|
+        %tr
+          %td=admin.username
+          %td=admin.email
+          %td.text-align
+            = link_to 'Delete', admin_path(admin), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-xs btn-danger'

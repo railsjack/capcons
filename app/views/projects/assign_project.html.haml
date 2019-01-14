@@ -1,0 +1,27 @@
+- provide(:title, 'Assign to User')
+- provide(:activemenu, 'list-projects')
+
+:javascript
+  $(document).ready(function(){
+    $('#project_userid').multiselect({'nonSelectedText':'#{t('Add user')}'});
+  });
+.row
+  .col-md-8.col-md-offset-1.user-form
+    %h4.uppercase= @project.name
+    = form_for @project,:url=>add_users_projects_path, html: { class: 'form-horizontal', role: 'form', method: :post} do |f|
+      = hidden_field_tag 'projectid', @project.id
+      %fieldset
+        - if @project.errors.any?
+          .alert.alert-danger
+            %h4
+              = pluralize(@project.errors.count, "error")
+              prohibited this project from being saved:
+            %ul
+              - @project.errors.full_messages.each do |msg|
+                %li= msg
+        - if current_user.role == "client"
+          .form-group
+            .col-md-9
+              = f.select(:userid, options_for_select(current_user.subordinates.collect {|x| [x.email, x.id]}), {}, {multiple: "multiple"})
+      .col-md-offset-2.col-md-5
+        = f.submit t('Save'), class: "btn btn-primary btn-block"

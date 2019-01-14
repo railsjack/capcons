@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  report_type: MyString
+  your_name: MyString
+  job_title: MyString
+  injury_date: 2014-06-08
+  injury_time: 2014-06-08 15:44:31
+  witnesses: MyString
+  location: MyString
+  circumstances: MyString
+  event_discription: MyString
+  injuries_type: MyString
+  ppe_used: false
+  medical_assistance_provided: false
+
+two:
+  report_type: MyString
+  your_name: MyString
+  job_title: MyString
+  injury_date: 2014-06-08
+  injury_time: 2014-06-08 15:44:31
+  witnesses: MyString
+  location: MyString
+  circumstances: MyString
+  event_discription: MyString
+  injuries_type: MyString
+  ppe_used: false
+  medical_assistance_provided: false

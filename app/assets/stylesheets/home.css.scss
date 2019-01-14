@@ -1,0 +1,47 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.home-container{
+	margin-top: -230px;
+	.welcome-message{
+		font-family: 'open_sanslight', sans-serif;
+		font-size: 20pt;
+		font-weight: normal;
+		color: #ccc;
+		margin-top: 70px;
+	}
+
+	.home-buttons{
+		width: 350px;
+		margin: 30px auto;
+		.btn-login{
+			width: 150px;
+			border: solid 1px #fe753f;
+			border-radius: 0;
+			color: #fe753f;
+		}
+
+		.btn-signup{
+			width: 150px;
+			border: solid 1px #efefef;
+			border-radius: 0;
+			color: #efefef;
+		}
+	}
+}
+
+.header{
+	margin: -30px -20px 20px -20px;
+	height: 280px; 
+	background: url(/images/header.jpg) no-repeat center top;
+	background-size: cover;
+
+}
+
+.main-body{
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 100%;
+}

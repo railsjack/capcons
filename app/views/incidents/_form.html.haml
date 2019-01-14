@@ -1,0 +1,57 @@
+.row
+  .col-md-6
+    = form_for [@project, @incident], html: { class: 'user-form form-horizontal', role: 'form'}  do |f|
+      %fieldset
+        - if @incident.errors.any?
+          .alert.alert-danger
+            %h2
+              = pluralize(@incident.errors.count, "error")
+              prohibited this incident from being saved:
+            %ul
+              - @incident.errors.full_messages.each do |msg|
+                %li= msg
+        .form-group
+          .col-md-9
+            = f.text_field :report_type, class: "form-control", placeholder: t('Report type')
+        .form-group
+          .col-md-9
+            = f.text_field :your_name, class: "form-control", placeholder: t('Your name')
+        .form-group
+          .col-md-9
+            = f.text_field :job_title, class: "form-control", placeholder: t('Job title')
+        .form-group
+          = f.label 'injury_date', t('Injury date/time'), class: "col-md-3 control-label text-nobold nowrap"
+          .col-md-9
+            = f.date_select :injury_date, class: "form-control", use_month_numbers: true
+        .form-group
+          = f.label ' ', class: "col-md-3 control-label"
+          .col-md-9
+            = f.time_select :injury_time, class: "form-control"
+        .form-group
+          .col-md-9
+            = f.text_field :witnesses, class: "form-control", placeholder: t('Witnesses')
+        .form-group
+          .col-md-9
+            = f.text_field :location, class: "form-control", placeholder: t('Location')
+        .form-group
+          .col-md-9
+            = f.text_field :circumstances, class: "form-control", placeholder: t('Circumstances')
+        .form-group
+          .col-md-9
+            = f.text_field :event_discription, class: "form-control", placeholder: t('Event description')
+        .form-group
+          .col-md-9
+            = f.text_field :injuries_type, class: "form-control", placeholder: t('Injuries type')
+        .form-group
+          .col-md-9
+            = f.text_field :ppe_used, class: "form-control", placeholder: t('Ppe used')
+        .form-group
+          .col-md-9
+            = f.text_field :medical_assistance_provided, class: "form-control", placeholder: t('Medical assistance provided')
+        .form-group
+          .pull-left.fileUpload{style: 'width: 120px;'}
+            %a.btn.btn-primary.no-border.btn-lg=t('Choose file')
+            = f.file_field :file, :multiple=>true, :class=>"file", :name=>"files[]" ,class: "col-md-offset-3 control-label upload"
+          .pull-left{style: 'line-height: 65px;height: 65px; '}=t('No file chosen')
+      .col-md-5.col-md-offset-2
+        = f.submit t('Save'), class: "btn btn-primary btn-lg btn-block"

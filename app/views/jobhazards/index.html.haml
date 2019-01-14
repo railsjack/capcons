@@ -1,0 +1,36 @@
+- provide(:title, 'Add project')
+- provide(:activemenu, 'list-projects')
+.incidents
+  %h4.uppercase
+    = @project.name
+    = t('job hazard analysis')
+  - if @jobhazards.present?
+    %table.table.table-hover
+      %thead
+        %tr
+          %th=t('Creation date')
+          %th=t('Scope of work to be performed')
+          %th=t('What are the critical steps?')
+          %th=t('What are the error likely situations?')
+          %th=t('What is the worst that can happen?')
+          %th=t('What defenses are in place?')
+          %th.text-center=t('Action')
+      %tbody
+        - @jobhazards.each do |jobhazard|
+          %tr
+            %td= jobhazard.created_at.strftime('%m/%d/%Y')
+            %td= jobhazard.sow
+            %td= jobhazard.criticalsteps
+            %td= jobhazard.situations
+            %td= jobhazard.worsthappen
+            %td= jobhazard.defenses
+            %td.text-center
+              = link_to t('Show'), project_jobhazard_path(@project, jobhazard), class: "btn btn-xs btn-primary"
+              = link_to t('Download Report'), send_new_jobhazard_jobhazard_path(jobhazard, {format: :pdf}), class: "btn btn-xs btn-primary"
+    %br/
+  - else
+    .alert.alert-info 
+      =t('No job hazard analysis report found')
+      ="."
+  = link_to t('New job hazard analysis'), new_project_jobhazard_path(@project), class: "btn btn-primary btn-lg no-radius"
+

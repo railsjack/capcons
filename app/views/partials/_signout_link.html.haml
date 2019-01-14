@@ -1,0 +1,9 @@
+- if user_signed_in?
+	.text-center
+		%br
+		= link_to	current_user.email, edit_user_path(current_user), class: 'text-white'
+		.row
+			.col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2{style: 'margin-top: 10px;'}
+				%a.text-white.uppercase.btn.btn-sm.btn-block.no-radius.border-white{"data-method" => "delete", 
+					:href => destroy_user_session_path}
+					= t("log out")

@@ -1,0 +1,232 @@
+
+
+.bg-transparent{
+	background-color: transparent;
+}
+.bg-muted {
+  background-color: #999999;
+}
+
+.bg-primary {
+  background-color: #428bca;
+}
+
+.bg-warning {
+  background-color: #c09853;
+}
+
+.bg-danger {
+  background-color: #b94a48;
+}
+
+.bg-success {
+  background-color: #468847;
+}
+
+.bg-info {
+  background-color: #3a87ad;
+}
+
+.bg-black{
+	background-color: #3e3e3e;
+}
+.bg-white{
+	background-color: #ffffff;
+}
+
+.text-black{
+	color: #3e3e3e;
+}
+.text-white{
+	color: #ffffff !important;
+}
+.text-bold{
+  font-weight: bold;
+}
+.text-nobold{
+  font-weight: normal !important;
+}
+.text-orange{
+  color: #fe753f;
+}
+
+
+.nowrap{
+  white-space: nowrap !important;
+}
+
+.border-black{
+  border-color: #3e3e3e;
+}
+.border-white{
+  border-color: #ffffff !important;
+}
+.center-block{
+  margin-left: auto;
+  margin-right: auto;
+}
+.no-radius{
+  border-radius: 0;
+}
+.uppercase{
+  text-transform: uppercase;
+}
+.font-open_sanslight{
+  font-family: 'open_sanslight', sans-serif;
+}
+.no-border{
+  border: none;
+}
+
+
+
+
+
+.navbar > .container-fluid{
+	height: 100%;
+}
+
+.container-fluid > .sidebar {
+    position: relative;
+    top: 0;
+    left:auto;
+    width: 240px;
+    height: 100%;
+}
+
+.container-fluid > .content {
+    margin: 0;
+    margin-left: 240px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    height: 100%;
+
+}
+
+.container-main{
+  overflow: visible;
+  margin-top: 20px;
+}
+
+.navbar{
+	height: 120px;
+	margin-bottom: 0;
+	display: block;
+}
+ul.main-navbar{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul.main-navbar li{
+  display: block;
+  height: 50px;
+  border-bottom: solid 1px #666;
+  text-indent: 10px;
+  line-height: 55px;
+}
+
+ul.main-navbar li a i{
+  margin-right: 10px;
+}
+
+.sidebar-main{
+	height: 100% !important;
+}
+
+.topbar{
+	border-bottom: solid 7px #fe753f;
+}
+
+.table thead{
+  background-color: #f5f3f4;
+}
+
+.table td{
+  background-color: #fbfbfb !important;
+}
+
+
+
+
+
+.width-100{
+  width: 100%;
+}
+.height-100{
+  height: 100%;
+}
+.display-table{
+  display: table;
+}
+.display-table-cell{
+  display: table-cell;
+}
+.valign-middle{
+  vertical-align: middle;
+}
+
+
+a.text-white:hover{
+  color: white !important;
+}
+a.no-hover:hover{
+  background: transparent;
+  color: #fe753f;
+}
+
+a.text-white.selected{
+  color: #999 !important;
+}
+
+form a.btn,form input[type=button].btn,form input[type=submit].btn, form input[type=file].btn{
+  background: transparent; 
+  color: #fe753f; 
+  border-color: #fe753f;
+}
+
+form a.btn:hover{
+  background: transparent; 
+  color: #fe753f; 
+}
+
+.btn-group + .multiselect{
+  width: 100%;
+}
+
+.relative{
+  position: relative;
+}
+
+
+
+html, body{
+  height: 100%;
+  font-size: 12pt;
+}
+body {
+  padding-top: 100px;
+  height: 100%;
+  min-height: 100%;
+
+  background: url(/images/login-bg.png) center center repeat-y #3e3e3e;
+}
+
+
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+}
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}

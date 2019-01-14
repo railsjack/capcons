@@ -1,0 +1,45 @@
+- provide(:title, 'Add project')
+- provide(:activemenu, 'list-projects')
+
+:javascript
+  $(document).ready(function(){
+    if ( $('#inc_id').length > 0 && $('#inc_id').val() > 0 ){
+      window.location.href = '/incidents/'+ $('#inc_id').val() +'/send_new_incident.pdf';
+    }
+    else if ( $('#jha_id').length > 0 && $('#jha_id').val() > 0 ){
+      window.location.href = '/jobhazards/'+ $('#jha_id').val() +'/send_new_jobhazard.pdf';
+    }
+  });
+= hidden_field_tag 'active_class', 'all_projects'
+- if @projects.present?
+  %h4.uppercase=t('Project List')
+  %table.table.projects-list
+    %thead
+      %th=t('Project Name')
+      %th=t('Contact Info')
+      %th=t('Address')
+      %th.text-center=t('Action')
+    %tbody
+      - @projects.each do |project|
+        %tr
+          - if project.reports && project.reports.last && project.reports.last.answers && project.reports.last.answers.where(status: 2).present?
+            %td{:style=>"color: red"}= project.name
+          - else
+            %td= project.name
+          %td= project.contact_info
+          %td= project.address
+          %td.text-center
+            = link_to t('Job Hazard Analysis'), project_jobhazards_path(project), class: "btn no-border bg-transparent"
+            = link_to t('Incident Report'), project_incidents_path(project), class: "btn no-border bg-transparent"
+            = link_to t('Checklists'), report_project_path(project), class: "btn no-border bg-transparent"
+            = link_to t('Users'), users_project_path(project), class: "btn no-border bg-transparent"
+            - if current_user.role == "client"
+              = link_to t('Assign to user'), assign_project_project_path(project), class: "btn no-border bg-transparent"
+            = link_to project, data: { confirm: t('Are you sure?') }, method: :delete, class: "btn no-border bg-transparent" do
+              %i.glyphicon.glyphicon-remove{style: 'font-size: 16pt;'}
+  - if params[:inc].present? && Incident.find(params[:inc]).present? && Incident.find(params[:inc]).downloaded.blank?
+    = hidden_field_tag :inc_id, params[:inc]
+  - if params[:jha].present? && Jobhazard.find(params[:jha]).present? && Jobhazard.find(params[:jha]).downloaded.blank?
+    = hidden_field_tag :jha_id, params[:jha]
+- else
+  %b=t('No Project Present')

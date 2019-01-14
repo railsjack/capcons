@@ -1,0 +1,25 @@
+:javascript
+  $(document).ready(function(){
+
+    if ( $('#inc_id').length > 0 && $('#inc_id').val() > 0 ){
+      window.location.href = '/incidents/'+ $('#inc_id').val() +'/send_new_incident.pdf';
+    }
+
+  });
+- if @reports.present?
+  %table.table.table-bordered.table-striped.table-condensed
+    %thead
+      %th Name
+      %th Action
+    %tbody
+      - @reports.each do |report|
+        %tr
+          %td= report.name
+          %td
+            = link_to "View Report", "#", class: "btn btn-xs btn-primary"
+            = link_to 'Destroy', report_path(report, {project_id: @project}), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-xs btn-danger"
+  - if params[:inc].present? && Incident.find(params[:inc]).present? && Incident.find(params[:inc]).downloaded.blank?
+    = hidden_field_tag :inc_id, params[:inc]
+- else
+  %b No Project Present
+

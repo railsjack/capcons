@@ -1,0 +1,13 @@
+Welcome to TestApp.com, <%= @email %><br/>
+===============================================
+<br/><br/>
+Someone has requested to signed up to TestApp,<br/>
+your Email is: <%= @email %>
+<br/>
+<br/>
+To Sign up to the site, just follow this link: <%= link_to "SignUp",  "http://#{@base_url}#{new_user_registration_path(auth_token: @token, email: @email)}" %>
+
+<br/><br/>
+Thanks for joining and have a great day!
+	</body>	
+</html>

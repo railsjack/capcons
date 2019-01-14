@@ -1,0 +1,31 @@
+- provide(:title, 'Users')
+- if current_user.admin?
+  - provide(:activemenu, 'list-clients')
+- else
+  - provide(:activemenu, 'users')
+
+:css
+  .td_width{
+  	width: 20%;
+  }
+- if @user.present?
+  .container-fluid
+    .login-form
+      %h4=t('User details')
+      %table.table
+        %tr
+          %th=t('First Name')
+          %th=t('Last Name')
+          %th=t('Email')
+          %th=t('Assigned Projects')
+        %tr
+          %td= @user.first_name || ''
+          %td= @user.last_name || ''
+          %td= @user.email || ''
+          %td
+            - if @user.projects.present?
+              = @user.projects.map{|project| project.name}.join(', ')
+            - else
+              0
+
+= link_to "<< #{t('Back')}", users_path, :class=>"btn btn-primary text-orange bg-transparent no-border no-hover"

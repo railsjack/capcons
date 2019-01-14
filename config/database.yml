@@ -1,0 +1,27 @@
+defaults: &defaults
+  username: root
+  password: 111111
+  host: localhost
+  pool: 5
+  adapter: mysql2
+  encoding: utf8
+
+development1:
+  database: ccs_app_development
+  <<: *defaults
+
+development:
+  database: ccs_app_development
+  <<: *defaults
+
+test:
+  database: ccs_app_test
+  <<: *defaults
+
+production:
+  <<: *defaults
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>

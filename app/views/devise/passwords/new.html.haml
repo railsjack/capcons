@@ -1,0 +1,11 @@
+.relative.signin-container
+  %p
+    %img{:src => "/images/logo1.png"}/
+  .col-md-4.col-md-offset-4.col-sm-8.col-sm-offset-2
+    %h3.text-center.text-white.font-open_sanslight=t('Forgot your password?')
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form-signin" }) do |f|
+      %div
+        = f.text_field :username, autofocus: true , class: "form-control no-radius", placeholder: t('User name')
+      %p &nbsp;
+      .relative
+        = f.submit t('Send me reset password instructions'), class: "btn btn-primary btn-lg btn-block no-radius" , style: "width:100%;"

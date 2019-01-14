@@ -1,0 +1,28 @@
+<%= hidden_field_tag 'active_class', 'invitations'%>
+<% if @invitations.present? %>
+	<table class="table table-bordered table-striped table-condensed">
+		<thead>
+			<th>Email</th>
+			<th>Role</th>
+			<th>Status</th>
+			<th>Action</th>
+		</thead>	
+		<tbody>
+			<% @invitations.each do |invitation| %>
+				<tr>
+					<td><%= invitation.email %></td>
+					<td><%= invitation.role %></td>
+					<td></td>
+					<td>
+						<!-- <a href="<%= edit_user_registration_path(invitation.id) %>" class="btn btn-primary btn-sm">Edit</a> -->
+						<%= link_to 'Destroy', user_registration_path(invitation), :confirm => 'Are you sure?', :method => :delete, :class=>"btn btn-danger btn-xs" %>
+						</td>
+				</tr>	
+			<% end %>
+		</tbody>	
+	</table>	
+<% else %>
+	<div class="text-center">
+		<b>No invitaion present</b>
+	</div>	
+<% end %>

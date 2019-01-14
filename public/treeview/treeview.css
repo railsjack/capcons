@@ -1,0 +1,69 @@
+.tree { 
+  margin: 10px 0 0 4px; 
+}
+.search-icon{
+  background: #fff url(/images/search-icon.png?_=1) no-repeat scroll;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 36px;
+  left: 13px;
+}
+.tree,.tree ul {
+  list-style-type: none; 
+  position: relative;
+  padding: 0;
+  cursor: default;
+  border-left: 1px dotted #999;
+}
+.tree ul {
+  margin: 0; 
+  display: none;
+}
+.tree li {
+  position: relative;
+  margin: 0 0 0 20px;
+  padding: 2px 0 2px 0;
+  background: #fff url(icons.png?_=1) no-repeat scroll;
+  background-position: -124px 4px;
+  cursor: pointer;
+  text-indent: 28px;
+}
+/* extend a line to the list item */
+.tree li:before {
+  position: absolute;
+  top: 12px;
+  left: -20px;
+  height: 10px;
+  width: 22px;
+  border-top: 1px dotted #999;
+  content: ' ';
+} 
+
+/* erase all lines for last item */
+.tree li:last-child:after {
+  position: absolute;
+  top: 13px;
+  left: -23px;
+  bottom: 0;
+  width: 6px; 
+  background-color: white;
+  content: ' ';
+} 
+/* add expander widget */
+.tree .expander {
+  background-position: -124px -4px;
+  position: absolute;
+  top: 2px;
+  left: -20px;
+  height: 19px;
+  width: 100%;
+  cursor: pointer;
+}
+.tree .expander::before{
+
+}
+
+.tree .expander:hover {  }
+.tree .expander.expanded { background-position: -124px -4px; }
+.tree ul.expanded { display: block; }

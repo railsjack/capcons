@@ -1,0 +1,130 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$('.answer_status').click(function(){
+			var $this = $(this);
+			$.ajax({
+	          type: 'get',
+	          url: '/projects/'+ $('#project_id').val() +'/answers/' + $this.attr('data-id') + '/check_answer',
+	          dataType: 'json',
+	          data: {
+	          	id: $this.attr('data-id')
+	          },
+	          success :function(data){
+	          	if(data == true)
+	          	{
+	          		bootbox.prompt("Please Enter Reason?", function(result) {                
+					  if (result === null) {                                             
+					    // Example.show("Prompt dismissed");                              
+					  } else {
+						$.ajax({
+				          type: 'patch',
+				          url: '/projects/'+ $('#project_id').val() +'/answers/' + $this.attr('data-id'),
+				          dataType: 'json',
+				          data: {
+				          	status: $this.val(),
+				          	note: result
+				          }
+			        	});  	
+					  }
+					});
+	          	}else{
+					$.ajax({
+			          type: 'patch',
+			          url: '/projects/'+ $('#project_id').val() +'/answers/' + $this.attr('data-id'),
+			          dataType: 'json',
+			          data: {
+			          	status: $this.val(),
+			          	id: $this.attr('data-id')
+			          }
+		        	});
+	          	}
+	          }
+	        });
+		});
+        ///////submit button click
+		$(".update-answer").click(function(e){
+			// alert("sdssd");
+			e.preventDefault();
+			var ansid = $(this).attr('id');
+			// alert(ansid);
+			// var pid =  $("#answer_project").val();
+			// var ans = $("#answer_answer-"+ansid).val();
+			var token =  $('meta[name="csrf-token"]').attr('content');
+			var form = $(this).parents('form');
+			console.log(form);
+			var url = form.attr('action');
+			form.ajaxSubmit({
+				url: url,
+				dataType: 'json',
+				type: 'patch',
+				data: {
+		            'authenticity_token' : $('meta[name="csrf-token"]').attr('content')
+		        },
+		        success: function (data) {
+		        	// alert("sasasasasass");
+		        	$(".save-span-"+ansid).removeClass("hidden");
+ 	             	$("#notes-"+ansid).val('');
+ 	             	// $("#answer_file").val('');
+                }
+			});
+			      		
+		});
+	});
+</script>
+<%= hidden_field_tag :project_id, @project.id %>
+<table class="table table-bordered table-striped table-condensed">
+	<thead>
+    <th>Name</th>
+    <th>Contact Info</th>
+    <th>Address</th>
+    <th>Action</th>
+	</thead>	
+	<tbody>
+		<tr>
+			<td><%= @project.name %></td>
+			<td><%= @project.contact_info %></td>
+			<td><%= @project.address %></td>
+			<td>
+            	<%= link_to "Edit", edit_project_path(@project), class: "btn btn-default btn-sm" %>
+            	            <%= link_to "View Checklists", project_reports_path(@project), class: "btn btn-sm btn-warning" %>
+
+				<%= link_to "Download detail report", detail_report_project_path(@project, { format: :pdf}), class: "btn btn-sm btn-info" %>
+				<%= link_to "Send incident", new_project_incident_path(@project), class: "btn btn-sm btn-primary" %>
+				<%= link_to "View incidents", project_incidents_path(@project), class: "btn btn-sm btn-success" %>
+            	<%= link_to 'Delete', @project, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-sm btn-danger" %>
+				</td>
+
+		</tr>	
+	</tbody>	
+</table>	
+
+<%#= form_for @project, html: { class: 'well', role: 'form'} do |f| %>
+
+	<fieldset>
+	  <h2 class="text-center"><strong><u>Detailed View of <%= @project.name %></u></strong> </h2>
+	  <br/>
+		<%#= f.hidden_field :enable_answers_validation, value: true %>
+	  	<% @categories.each do |c| %>
+			<h3><strong><u><%= c.name %></u></strong></h3>
+			<% c.questions.each do |q| %>
+				<div class="form-group">		
+					<%= "#{q.body}" %>
+		      		<% answer = @answers.find_by(question_id: q.id) %>
+				     	<div class="row">
+					     	<% GlobalConstants::Answers::STATUSES.each do |st| %> 
+						      	<div class="col-sm-3">
+						      		<%= radio_button_tag "status#{answer.id}", st[1], answer_radio_status(answer.status, st[1]), class: "answer_status", data: { id: answer.id } %>
+						      		<%= label "status#{answer.id}_#{st[1]}", st[0] %>	
+						      	</div> 
+					      	<% end %>
+				        </div>
+				    <br/>
+		    	</div>
+		    	<div class="" style="margin-right: 0px;margin-left: 14px;">
+		       	<%= render partial: "notes", :locals => {:@answer1 => answer, :@project=>@project} %>
+		       </div>
+			<% end %>
+		<% end %>
+	</fieldset>
+<%# end %>

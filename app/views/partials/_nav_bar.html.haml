@@ -1,0 +1,42 @@
+%ul.uppercase.main-navbar
+  - if current_user.role == 'client'
+    %li.invitations
+      %a.text-white{:href => users_path, menu:'users'}
+        %i.glyphicon.glyphicon-user
+        =t('List users')
+    %li.invite_user
+      %a.text-white{:href => new_user_path, menu:'add-user'}
+        %i.glyphicon.glyphicon-user
+        =t('Add user')
+  - elsif current_user.role == "admin"
+    %li.invitations
+      %a.text-white{:href => users_path, menu:'list-clients'} 
+        %i.glyphicon.glyphicon-list
+        =t('List clients')
+    %li.invite_user
+      %a.text-white{:href => new_user_path, menu:'add-client'} 
+        %i.glyphicon.glyphicon-plus-sign
+        =t('Add client')
+    - if current_user.super_admin?
+      %li.invitations
+        %a.text-white{:href => admins_path, menu:'list-admins'} 
+          %i.glyphicon.glyphicon-list
+          =t('List admins')
+      %li.invite_user
+        %a.text-white{:href => new_admin_path, menu:'add-admin'} 
+          %i.glyphicon.glyphicon-plus-sign
+          =t('Add admin')
+  - unless current_user.role == 'admin'
+    %li.all_projects
+      %a.text-white{:href => projects_path, menu:'list-projects'}
+        %i.glyphicon.glyphicon-list
+        =t('List Projects')
+    %li.create_project
+      %a.text-white{:href => new_project_path, menu:'add-project'}
+        %i.glyphicon.glyphicon-plus-sign
+        =t('Add Project')
+    /- if current_user.role == 'client'
+    %li.invitations
+      %a.text-white{:href => stats_index_path, menu:'stats'}
+        %i.glyphicon.glyphicon-stats
+        =t('Stats')

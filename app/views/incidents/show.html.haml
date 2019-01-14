@@ -1,0 +1,71 @@
+- provide(:title, 'Add project')
+- provide(:activemenu, 'list-projects')
+%p
+  %strong
+    = t('Report type')
+    = ":"
+  = @incident.report_type && @incident.report_type
+%p
+  %strong 
+    = t('Your name')
+    =":"
+  = @incident.your_name && @incident.your_name
+%p
+  %strong
+    = t('Job title')
+    = ":"
+  = @incident.job_title && @incident.job_title
+%p
+  %strong
+    =t('Injury date')
+    =":"
+  = @incident.injury_date && @incident.injury_date.strftime("%a  %d - %m - %Y")
+%p
+  %strong
+    =t('Injury time')
+    =":"
+  = @incident.injury_time && @incident.injury_time.strftime("%I:%M %p")
+%p
+  %strong
+    =t('Witnesses')
+    = ":"
+  = @incident.witnesses && @incident.witnesses
+%p
+  %strong
+    =t('Location')
+    =":"
+  = @incident.location && @incident.location
+%p
+  %strong
+    =t('Circumstances')
+    =":"
+  = @incident.circumstances && @incident.circumstances
+%p
+  %strong
+    =t('Event description')
+    =":"
+  = @incident.event_discription && @incident.event_discription
+%p
+  %strong 
+    =t('Injuries type')
+    =":"
+  = @incident.injuries_type && @incident.injuries_type
+%p
+  %strong
+    =t('Ppe used')
+    =":"
+  = @incident.ppe_used && @incident.ppe_used
+%p
+  %strong
+    =t('Medical assistance provided')
+    =":"
+  = @incident.medical_assistance_provided
+%strong
+  =t('Photo')
+  =":"
+%div
+  - @incident_file.each do |ifile|
+    = image_tag "#{ifile.file_url}", :style=>"width:150px; height:150px;"
+%br/
+%br/
+= link_to t('Back'), project_incidents_path(@project), class: "btn no-border bg-transparent text-orange"

@@ -1,0 +1,41 @@
+- provide(:title, 'Add project')
+- provide(:activemenu, 'list-projects')
+%p
+  %strong
+    = t('Creation date')
+    = ":"
+  = @jobhazard.created_at.strftime('%m/%d/%Y')
+%p
+  %strong
+    = t('Scope of work to be performed')
+    = ":"
+  = @jobhazard.sow && @jobhazard.sow
+%p
+  %strong
+    = t('What are the critical steps?')
+    = ":"
+  = @jobhazard.criticalsteps && @jobhazard.criticalsteps
+%p
+  %strong
+    = t('What are the error likely situations?')
+    = ":"
+  = @jobhazard.situations && @jobhazard.situations
+%p
+  %strong
+    = t('What is the worst that can happen?')
+    = ":"
+  = @jobhazard.worsthappen && @jobhazard.worsthappen
+%p
+  %strong
+    = t('What defenses are in place?')
+    = ":"
+  = @jobhazard.defenses && @jobhazard.defenses
+%strong
+  =t('Photo')
+  =":"
+%div
+  - @jobhazard_file.each do |jfile|
+    = image_tag "#{jfile.file_url}", :style=>"width:150px; height:150px;"
+%br/
+%br/
+= link_to t('Back'), project_jobhazards_path(@project), class: "btn no-border bg-transparent text-orange"

@@ -1,0 +1,13 @@
+= form_for(@user, url: admins_path) do |f|
+  = render 'partials/flash_message'
+  .form-group
+    = f.text_field :username, autofocus: true,  class: "form-control", placeholder: t("User name")
+  .form-group
+    = f.email_field :email, class: "form-control", placeholder: t('Email')
+  .form-group
+    = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: t('Password')
+  .form-group
+    = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: t('Password Confirmation')
+
+  = f.submit t('Save') , class: "btn btn-primary no-radius"
+  

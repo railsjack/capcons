@@ -1,0 +1,43 @@
+- provide(:title, 'Add project')
+- provide(:activemenu, 'list-projects')
+:javascript
+  $(document).ready(function(){
+
+    if ( $('#inc_id').length > 0 && $('#inc_id').val() > 0 ){
+      window.location.href = '/incidents/'+ $('#inc_id').val() +'/send_new_incident.pdf';
+    }
+
+  });
+
+- if @reports.present?
+  %h3= @project.name
+  %table.table
+    %thead
+      %th=t('Category')
+      %th=t('Date')
+      %th=t('User')
+      %th.text-center=t('Action')
+    %tbody
+      - @reports.each do |report|
+        - next unless report.choice
+        %tr
+          %td
+            - unless report.category.nil?
+              = report.category.name
+          %td
+            - if report.answers.where(status: 2).present?
+              = link_to "#{report.created_at.strftime("%m/%d/%Y")}", categories_project_path(@project, {report: report.id}),style: "color: red;"
+            - else
+              = link_to "#{report.created_at.strftime("%m/%d/%Y")}", categories_project_path(@project, {report: report.id})
+          %td
+            - user = User.find(report.user_id)
+            = user.first_name || user.last_name || ''
+          %td.text-center
+            = link_to t('Download Checklist'),detail_report_project_report_path(@project,report ,{ format: :pdf}), class: "btn text-orange"
+            = link_to project_report_path(@project,report), data: { confirm: t('Are you sure?') }, method: :delete, class: "btn" do
+              %i.glyphicon.glyphicon-remove.bg-transparent.text-danger
+  - if params[:inc].present? && Incident.find(params[:inc]).present? && Incident.find(params[:inc]).downloaded.blank?
+    = hidden_field_tag :inc_id, params[:inc]
+- else
+  .alert.alert-info No report has been found.
+= link_to "« #{t('Back')}","javascript: history.back();", class: "btn btn-danger bg-transparent text-orange no-border"

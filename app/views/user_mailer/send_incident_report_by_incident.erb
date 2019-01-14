@@ -1,0 +1,32 @@
+
+<table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%">
+<tr><th style="text-align: left;">Report Type: </th><td style="width: 120px;"> <%= @incident.report_type %></td></tr>
+<tr><th style="text-align: left;">Name: </th><td> <%= @incident.your_name %></td></tr>
+<tr><th style="text-align: left;">Job Title: </th><td> <%= @incident.job_title %></td></tr>
+<tr><th style="text-align: left;">Injury Date: </th><td> <%= @incident.injury_date %></td></tr>
+<tr><th style="text-align: left;">Time of Injury : </th><td> <%= @incident.injury_time.strftime("%H:%M") %></td></tr>
+<tr><th style="text-align: left;">Witnesses: </th><td> <%= @incident.witnesses %></td></tr>
+<tr><th style="text-align: left;">Location: </th><td> <%= @incident.location %></td></tr>
+<tr><th style="text-align: left;">Circumstances: </th><td> <%= @incident.circumstances %></td></tr>
+<tr><th style="text-align: left;">Description of Event: </th><td> <%= @incident.event_discription %></td></tr>
+<tr><th style="text-align: left;">What Injuries Occurred: </th><td> <%= @incident.injuries_type %></td></tr>
+<tr><th style="text-align: left;">What PPE Being Used: </th><td> <%= @incident.ppe_used %></td></tr>
+<tr><th style="text-align: left;">Medical Assistance Provided: </th><td> <%= @incident.medical_assistance_provided %></td></tr>
+</table>
+
+<br/><br/>
+<% if @incidents_file.size > 0 %>
+To view photo of issue: <br />
+    <% @incidents_file.each do |iFile| %>
+      <%= link_to "click here",  "http://#{TestApp::Application.config.action_mailer.default_url_options[:host]}#{iFile.file}", target: "_blank" %>
+      <br />
+    <% end %>
+<% end %>
+<br/><br/><br/>
+--Regards
+<p><%= @user.first_name + " " + @user.last_name %><%= %></p>
+<p><%= @user.company %></p>
+
+	</body>	
+</html>
+

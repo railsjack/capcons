@@ -1,0 +1,12 @@
+- unless current_user.present?
+	.relative.home-container
+		%p
+			%img{:src => "/images/logo1.png"}/
+		.welcome-message
+			= t('Welcome to Capital Construction Company!')
+		.home-buttons
+			%a.uppercase.btn.pull-left.btn-login{:href => new_user_session_path}=t('Login')
+			%a.uppercase.btn.pull-right.btn-signup{:href => new_user_registration_path}=t('Sign up')
+- else
+	%h2.font-open_sanslight
+		= t('Welcome to Capital Construction Company!')

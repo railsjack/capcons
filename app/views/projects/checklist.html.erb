@@ -1,0 +1,19 @@
+<div class="alert alert-info">
+  <strong>Projects:</strong> <%= @project.name %>
+</div>
+<h3>Checklists</h3>
+<table class="table table-bordered table-striped table-condensed">
+  <thead>
+    <th>#</th>
+    <th>Checklist Name</th>
+  </thead>  
+  <tbody>
+    <% @reports.each_with_index do |rep,index|%>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= link_to rep.name, project_path(@project, {cat: @category, rep: rep.id})%></td>
+        </tr>
+    <% end %>   
+  </tbody>  
+</table> 
+<!-- project_path(@project, {cat: cat.id}) -->

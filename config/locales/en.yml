@@ -1,0 +1,108 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  date:
+    order:
+      - :year
+      - :month
+      - :day
+
+  hello: "Hello world"
+  "Welcome to Capital Construction Company!" : "Welcome to Capital Construction Company!"
+  "Login" : "Login"
+  "User name" : "User Name"
+  "Password" : "Password"
+  "Remember me" : "Remember me"
+  "Forgot your password?" : "Forgot your password?"
+  "Sign in" : "SIGN IN"
+  "Don't have an account?" : "Don't have an account?"
+  "Sign up" : "SIGN UP"
+  "Send me reset password instructions" : "Send me reset password instructions"
+  "Add user" : "Add user"
+  "Email" : "Email"
+  "First Name" : "First Name"
+  "Last Name" : "Last Name"
+  "Company" : "Company"
+  "Phone" : "Phone"
+  "Address" : "Address"
+  "Password Confirmation" : "Password Confirmation"
+  "log out" : "log out"
+  "List users" : "List users"
+  "List clients" : "List clients"
+  "Add client" : "Add client"
+  "List Projects" : "List Projects"
+  "Add Project" : "Add Project"
+  "User" : "User"
+  "Projects" : "Projects"
+  "Action" : "Action"
+  "User details" : "User details"
+  "Assigned Projects" : "Assigned Projects"
+  "Back" : "Back"
+  "Save" : "Save"
+  "Project List" : "Project List"
+  "Project Name" : "Project Name"
+  "Contact Info" : "Contact Info"
+  "Incident Report" : "Incident Report"
+  "Checklists" : "Checklists"
+  "Are you sure?" : "Are you sure?"
+  "Users" : "Users"
+  "Assign to user" : "Assign to user"
+  "No Project Present" : "No Project Present"
+  "Project Detail" : "Project Detail"
+  "Name" : "Name"
+  "Edit" : "Edit"
+  "View Checklists" : "View Checklists"
+  "Download detail report" : "Download detail report"
+  "Send incident" : "Send incident"
+  "View incidents" : "View incidents"
+  "Detailed View of" : "Detailed View of"
+  "Edit Project" : "Edit Project"
+  "Location" : "Location"
+  "Contact Name" : "Contact Name"
+  "Date" : "Date"
+  "Download Checklist" : "Download Checklist"
+  "Injury date/time" : "Injury date/time"
+  "Witnesses" : "Witnesses"
+  "Report type" : "Report type"
+  "Your name" : "Your name"
+  "Job title" : "Job title"
+  "Circumstances" : "Circumstances"
+  "Event description" : "Event description"
+  "Injuries type" : "Injuries type"
+  "Ppe used" : "Ppe used"
+  "Medical assistance provided" : "Medical assistance provided"
+  "Choose file" : "Choose file"
+  "No file chosen" : "No file chosen"
+  "Create Incident" : "Create Incident"
+  "incidents" : "incidents"
+  "Show" : "Show"
+  "Download Report" : "Download Report"
+  "No incident report found" : "No incident report found"
+  "New Incident" : "New Incident"
+  "Injury date" : "Injury date"
+  "Injury time" : "Injury time"
+  "Photo" : "Photo"
+  "30 days Checklists" : "30 days Checklists"
+  "60 days Checklists" : "60 days Checklists"
+  "90+ day Checklists" : "90+ day Checklists"
+  "Unassign" : "Unassign"
+  "Stats" : "Stats"

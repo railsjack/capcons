@@ -1,0 +1,14 @@
+<h2 style="text-align: center;"><strong><u>Detailed View of <%= @project.name %></u></strong> </h2>
+<div class="row">
+<%  @answers = @project.answers %>
+<% Category.all.includes(:questions).all.each do |c| %>
+	<h3><strong><u><%= c.name %></u></strong></h3>
+	<% c.questions.each do |q| %>
+		<strong>Q: <%= q.body %></strong>		
+      	<% answer = @answers.find_by(question_id: q.id) %>
+		<div class="row">
+		    Ans: <%= GlobalConstants::Answers::STATUSES[answer.status][0] %>
+		</div>
+	<% end %>
+<% end %>	
+</div>

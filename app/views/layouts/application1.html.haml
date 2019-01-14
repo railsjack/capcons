@@ -1,0 +1,43 @@
+!!!
+%html
+  %head
+    %title
+      = full_title(yield(:title))
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    - if current_user.present?
+      = javascript_include_tag "application", "data-turbolinks-track" => true
+    - else
+      = javascript_include_tag "landing", "data-turbolinks-track" => true
+    = stylesheet_link_tag "/fonts/open_sanslight.css"
+    = csrf_meta_tags
+    :css
+      .container{
+        height: 100%;
+      }
+      body{
+        padding: 0;
+        overflow: auto;
+        background: url(/images/signin-bg.jpg) no-repeat center center;
+        background-size: cover;
+
+      }
+    :javascript
+      var activemenu = "";
+      var ready = function(){
+        jQuery(document).on('click', '.close', function(){
+          jQuery('.alert').remove();
+        })
+      };
+
+      jQuery(ready);
+      jQuery(document).on('page:load', ready);
+
+  %body
+    = render partial: "partials/nav_bar" if current_user.present?
+    = render partial: "partials/flash_message"
+    .container
+      .display-table.width-100.height-100
+        .display-table-cell.valign-middle.width-100.height-100.text-white.text-center
+          = yield
+
+

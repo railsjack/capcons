@@ -1,0 +1,2 @@
+module JobhazardsFilesHelper
+end

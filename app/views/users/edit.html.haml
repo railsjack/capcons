@@ -1,0 +1,28 @@
+- provide(:title, 'Users | Edit')
+- if current_user.admin?
+	- provide(:activemenu, 'list-clients')
+- else
+	- provide(:activemenu, 'users')
+.container
+	.row
+		.col-sm-8.col-md-8.col-md-offset-2.user-form
+			%div{:style => "padding: 0 20px 20px 20px !important"}
+				= form_for(@user) do |f|
+					.relative
+						- if params[:email].present?
+							= params[:email]
+							= f.hidden_field :email, value: params[:email]
+						- else
+							%br/
+							= f.email_field :email, autofocus: true, class: "form-control", placeholder: 'Email'
+					.relative
+						= f.text_field :first_name, autofocus: true, class: "form-control", placeholder: 'First Name'
+					.relative
+						= f.text_field :last_name, autofocus: true, class: "form-control", placeholder: 'Last Name'
+					.relative
+						= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: 'Password Confirmation'
+					.relative
+						= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: 'Password Confirmation'
+					= f.hidden_field :auth_token, :value => params[:auth_token]
+					.relative.col-md-6.col-md-offset-3.col-sm-6.col-sm-offset-3
+						= f.submit "Save" , class: "btn btn-lg btn-primary btn-block no-radius"

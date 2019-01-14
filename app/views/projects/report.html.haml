@@ -1,0 +1,54 @@
+:css
+  td, th{
+    text-align: center;
+  }
+- provide(:title, 'Add project')
+- provide(:activemenu, 'list-projects')
+%h4.uppercase= @project.name
+- if @project.present?
+  %table.table.table-bordered.table-striped
+    %thead
+      %th=t('User')
+      %th=t('30 days Checklists')
+      %th=t('60 days Checklists')
+      %th=t('90+ day Checklists')
+    %tbody
+      - project_url = project_reports_path(@project)
+      - @days_30 = @days_30.to_i
+      - @days_60 = @days_60.to_i
+      - @days_90 = @days_90.to_i
+
+      - @all_reports.each do |report|
+        - id = report[0]
+        - report = report[1]
+        - if report[:user] != nil
+          %tr
+            %td= report[:user].name
+            - @days_30 = report[:count_30] || 0
+            - @days_60 = report[:count_60] || 0
+            - @days_90 = report[:count_90] || 0
+            - from_to1 = "?from=0&to=29&user_id=#{report[:user].id}"
+            - from_to2 = "?from=30&to=59&user_id=#{report[:user].id}"
+            - from_to3 = "?from=60&to=89&user_id=#{report[:user].id}"
+            %td
+              - if @red_30 != true
+                = link_to "#{@days_30}", @days_30==0 ? '#': project_url+from_to1
+              - else
+                = link_to "#{@days_30}", @days_30==0 ? '#': project_url+from_to1, style: "color: red;"
+            %td
+              - if @red_60 != true
+                = link_to "#{@days_60}", @days_60==0 ? '#': project_url+from_to2
+              - else
+                = link_to "#{@days_60}", @days_60==0 ? '#': project_url+from_to2, style: "color: red;"
+            %td
+              - if @red_90 != true
+                = link_to "#{@days_90}", @days_90==0 ? '#': project_url+from_to3
+              - else
+                = link_to "#{@days_90}", @days_90==0 ? '#': project_url+from_to3, style: "color: red;"
+
+
+      %tr.hidden
+        / <td></haml_block><haml_silent></haml_silent><haml_block></td>
+        %td= @uname
+- else
+  %b=t('No Project Present')

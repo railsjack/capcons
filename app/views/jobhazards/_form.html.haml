@@ -1,0 +1,35 @@
+.row
+  .col-md-6
+    = form_for [@project, @jobhazard], html: { class: 'user-form form-horizontal', role: 'form'}  do |f|
+      %fieldset
+        - if @jobhazard.errors.any?
+          .alert.alert-danger
+            %h2
+              = pluralize(@jobhazard.errors.count, "error")
+              prohibited this job hazard analysis from being saved:
+            %ul
+              - @jobhazard.errors.full_messages.each do |msg|
+                %li= msg
+        .form-group
+          .col-md-9
+            = f.text_field :sow, class: "form-control", placeholder: "Scope of work to be performed"
+        .form-group
+          .col-md-9
+            = f.text_field :criticalsteps, class: "form-control", placeholder: "What are the critical steps?"
+        .form-group
+          .col-md-9
+            = f.text_field :situations, class: "form-control", placeholder: "What are the error likely situations?"
+        .form-group
+          .col-md-9
+            = f.text_field :worsthappen, class: "form-control", placeholder: "What is the worst that can happen?"
+        .form-group
+          .col-md-9
+            = f.text_field :defenses, class: "form-control", placeholder: "What defenses are in place?"
+        .form-group
+          .pull-left.fileUpload{style: 'width: 120px;'}
+            %a.btn.btn-primary.no-border.btn-lg=t('Choose file')
+            = f.file_field :file, :multiple=>true, :class=>"file", :name=>"files[]" ,class: "col-md-offset-3 control-label upload"
+          .pull-left{style: 'line-height: 65px;height: 65px; '}=t('No file chosen')
+      .col-md-5.col-md-offset-2
+        = f.submit t('Save'), class: "btn btn-primary btn-lg btn-block"
+        

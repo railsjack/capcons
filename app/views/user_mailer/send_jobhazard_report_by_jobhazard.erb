@@ -1,0 +1,25 @@
+<h2>Project: <%= @projectname %></h2>
+<table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%">
+<tr><th style="text-align: left;">Scope of work to be performed</th></tr><tr><td style="width: 120px;"> <%= @jobhazard.sow %></td></tr>
+<tr><th style="text-align: left;">What are the critical steps?</th></tr><tr><td> <%= @jobhazard.criticalsteps %></td></tr>
+<tr><th style="text-align: left;">What are the error likely situations?</th></tr><tr><td> <%= @jobhazard.situations %></td></tr>
+<tr><th style="text-align: left;">What is the worst that can happen?</th></tr><tr><td> <%= @jobhazard.worsthappen %></td></tr>
+<tr><th style="text-align: left;">What defenses are in place?</th></tr><tr><td> <%= @jobhazard.defenses %></td></tr>
+</table>
+
+<br/><br/>
+<% if @jobhazards_file.size > 0 %>
+To view photo of issue: <br />
+    <% @jobhazards_file.each do |jFile| %>
+        <%= link_to "click here",  "http://#{TestApp::Application.config.action_mailer.default_url_options[:host]}#{jFile.file}", target: "_blank" %>
+        <br />
+    <% end %>
+<% end %>
+<br/><br/><br/>
+--Regards
+<p><%= @user.first_name + " " + @user.last_name %><%= %></p>
+<p><%= @user.company %></p>
+
+	</body>	
+</html>
+

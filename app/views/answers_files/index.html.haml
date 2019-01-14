@@ -1,0 +1,21 @@
+%h1 Listing answers_files
+
+%table
+  %tr
+    %th Answer
+    %th File
+    %th
+    %th
+    %th
+
+  - @answers_files.each do |answers_file|
+    %tr
+      %td= answers_file.answer_id
+      %td= answers_file.file
+      %td= link_to 'Show', answers_file
+      %td= link_to 'Edit', edit_answers_file_path(answers_file)
+      %td= link_to 'Destroy', answers_file, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Answers file', new_answers_file_path

@@ -1,0 +1,64 @@
+!!!
+%html
+  %head
+    %title
+      = full_title(yield(:title))
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = stylesheet_link_tag "/fonts/open_sanslight.css"
+    - if current_user.present?
+      = javascript_include_tag "application", "data-turbolinks-track" => true
+    - else
+      = javascript_include_tag "landing", "data-turbolinks-track" => true
+
+    %link{:href => "/table/bootstrap-table.min.css", :rel => "stylesheet", :type => "text/css"}/
+    %script{src: "/table/bootstrap-table.min.js"}
+
+    %script{:src => "/treeview/treeview.js"}
+    %link{:href => "/treeview/treeview.css", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "/iscroll/iscroll.js", :type => "application/javascript"}
+
+    = csrf_meta_tags
+    :javascript
+      jQuery(window).resize(function(){
+        jQuery('.container-main').height($('body').outerHeight()-$('.topbar').height()-7);
+        $('.main-body').height(  $('.main-container').height()-$('.header').height()  );
+      });
+      var activemenu = "";
+      var ready = function(){
+        var $ = jQuery;
+        $(window).trigger('resize');
+        $('.main-navbar li a').removeClass('selected');
+        if(activemenu != ""){
+          $('.main-navbar a[menu='+activemenu+']').addClass('selected');
+        }
+        $('.close').on('click', function(){
+          $('.alert').remvoe();
+        })
+      };
+
+      jQuery(ready);
+      jQuery(document).on('page:load', ready);
+
+  %body
+    .topbar.navbar.navbar-fixed-top
+      .container-fluid.bg-white
+        .sidebar.pull-left.bg-black.text-white
+          = render partial: 'partials/signout_link'
+        .pull-left.display-table.height-100
+          .display-table-cell.height-100.valign-middle
+            - if current_user.present?
+              = link_to root_path do
+                =image_tag('logo.png')
+    .container-main.container-fluid.bg-black
+      .sidebar.sidebar-main.pull-left.bg-black
+        = render partial: 'partials/nav_bar'
+      .main-container.content.bg-white{style: 'paadding: 0; '}
+        - if @noheader.nil?
+          .header
+        .main-body
+          = yield
+          %p &nbsp;
+          %p &nbsp;
+          %p &nbsp;
+    :javascript
+      activemenu = "#{yield(:activemenu)}";

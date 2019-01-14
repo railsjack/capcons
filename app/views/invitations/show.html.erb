@@ -1,0 +1,20 @@
+
+<table class="table table-bordered table-striped table-condensed">
+	<thead>
+		<th>Email</th>
+		<th>Role</th>
+		<th>Status</th>
+		<th>Action</th>
+	</thead>	
+	<tbody>
+		<tr>
+			<td><%= @invitation.email %></td>
+			<td><%= @invitation.role %></td>
+			<td></td>
+			<td>
+				<a href="<%= edit_invitation_path(@invitation.id) %>" class="btn btn-primary btn-sm">Edit</a>
+				<%= link_to 'Destroy', @invitation, :confirm => 'Are you sure?', :method => :delete %>
+				</td>
+		</tr>	
+	</tbody>	
+</table>	
